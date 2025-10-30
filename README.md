@@ -5,6 +5,6 @@ This is my first real from scratch project
 
 More to come.. 
 
-#2 How to use
+## How to use
 
-#2 How to download
+## How to download
