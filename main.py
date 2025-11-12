@@ -1,7 +1,9 @@
 from constants import PERIODS
-from function.data_manager import read_food_datafile
+from function.data_manager import read_food_datafile, save_to_json, load_json
 from function.user_input import get_period, get_food_name, select_from_food_list, get_quantity
 from function.search_engine import find_matching_food, display_foods
+from function.calculator import calculate_macro
+from function.display import show_summary_table
 
 def main():
     print("DietLab")
@@ -22,19 +24,18 @@ def main():
     list_index = select_from_food_list(search_list)
     selected_food = search_list[list_index]
 
-    #L'utilisateur encode la quantité de l'aliment selectionné
+    #L'utilisateur encode la quantité de l'aliment sélectionné
     food_quantity = get_quantity()
     
-    ##à changer
-    macro_result = float(food_quantity) / 100
+    #Calcul du résultat des macro-nutriment pour l'aliment sélectionné
+    macro_value_dict = calculate_macro(food_datafile[selected_food], food_quantity, selected_period)
+    
+    #Enregistrement du record
+    save_to_json(selected_food, macro_value_dict)
 
-    print(f"Element : {selected_food} enregistré")
-    print(f"Période : {selected_period}")
-    print(
-f"""
-Valeurs macro. 
-Calories : {float(food_datafile[selected_food]["calories"])*macro_result}
-Protéines : {float(food_datafile[selected_food]["proteines"])*macro_result}
-""")
+    #Affichage du tableau récapitulatif
+    show_summary_table(load_json())
+
+
          
 main()
