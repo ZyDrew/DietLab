@@ -1,6 +1,8 @@
 from rich.table import Table
 from rich.markdown import Markdown
 from rich import print
+from function.calculator import sum_macros
+from constants import PERIODS
 
 def show_menu(console):
     console.clear()
@@ -30,32 +32,28 @@ def show_summary_table(food_data, console):
 
     #Liste des tableaux
     table_list = []
+    tables = {
+        PERIODS[0] : "Petit déjeuner",
+        PERIODS[1] : "Collation du matin",
+        PERIODS[2] : "Diner",
+        PERIODS[3] : "Goûter",
+        PERIODS[4] : "Souper",
+        PERIODS[5] : "Collation du soir"
+    }
 
     #Appel de la création des tableaux pour chaque période
-    table_list.append(generate_table("breakfast", "Petit déjeuner", food_data))
-    table_list.append(generate_table("morning-snack", "Collation du matin", food_data))
-    table_list.append(generate_table("lunch", "Diner", food_data))
-    table_list.append(generate_table("snack", "Goûter", food_data))
-    table_list.append(generate_table("diner", "Souper", food_data))
-    table_list.append(generate_table("night-snack", "Collation du soir", food_data))
+    for period, name in tables.items():
+        table_list.append(generate_table(period, name, food_data))
+
+    #Calcul du total pour la journée complète
+    table_list.append(generate_total_table(food_data))
 
     for table in table_list:
         console.print(table)
 
 def generate_table(period, period_name, food_data):
+    table = base_table(period_name)
 
-    table = Table(title=period_name)
-
-    #Ajout des colonnes de la table
-    table.add_column("Nom", justify="center")
-    table.add_column("Quantité (g ou ml)")
-    table.add_column("Calories (kcal)")
-    table.add_column("Protéines (g)")
-    table.add_column("Glucides (g)")
-    table.add_column("Lipides (g)")
-    table.add_column("Calcium (mg)")
-    table.add_column("Fer (mg)")
-    table.add_column("Vitamin-C (mg)")
 
     #food_data = Liste de dictionnaires contenant chaque aliment
     #food = Dictionnaire : clé = nom de l'aliment , valeur = sous-dictionnaire avec les caractéristiques
@@ -73,6 +71,52 @@ def generate_table(period, period_name, food_data):
                 fmt(details["iron"]),
                 fmt(details["vitamin_c"])
             )
+
+    #Calcul du total pour une période d'une journée
+    calories, proteins, carbs, fat, calcium, iron, vitamin_c = sum_macros(food_data, period)
+    table.add_section()
+    table.add_row("Total", 
+                  "", 
+                  fmt(calories), 
+                  fmt(proteins),
+                  fmt(carbs),
+                  fmt(fat), 
+                  fmt(calcium), 
+                  fmt(iron),
+                  fmt(vitamin_c))
+
+    return table
+
+def generate_total_table(food_data):
+    table = base_table("Total pour la journée")
+    
+    calories, proteins, carbs, fat, calcium, iron, vitamin_c = sum_macros(food_data)
+    table.add_row("Total",
+                    "",
+                    fmt(calories),
+                    fmt(proteins),
+                    fmt(carbs),
+                    fmt(fat),
+                    fmt(calcium),
+                    fmt(iron),
+                    fmt(vitamin_c))
+    
+    return table
+
+def base_table(title):
+    #Création de la structure de base pour toutes les tables
+    table = Table(title=title)
+    
+    #Ajout des colonnes de la table
+    table.add_column("Nom", justify="center")
+    table.add_column("Quantité (g ou ml)")
+    table.add_column("Calories (kcal)")
+    table.add_column("Protéines (g)")
+    table.add_column("Glucides (g)")
+    table.add_column("Lipides (g)")
+    table.add_column("Calcium (mg)")
+    table.add_column("Fer (mg)")
+    table.add_column("Vitamin-C (mg)")
 
     return table
 
