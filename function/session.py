@@ -1,7 +1,7 @@
 from constants import PERIODS
 from function.calculator import calculate_macro
 from function.data_manager import load_json, save_to_json
-from function.display import food_error, show_summary_table, display_foods
+from function.display import food_error, show_summary_table, display_foods, recap_error
 from function.search_engine import find_matching_food
 from function.user_input import enter_to_exit, get_period, get_food_name, select_from_food_list, get_quantity, get_continue_or_change_period
 
@@ -16,7 +16,11 @@ def run_program_loop(user_menu, food_datafile, console):
                 add_food_item(food_datafile, PERIODS[period_index], console)
                 loop = get_continue_or_change_period(console)
         case 2:
-            show_summary_table(load_json(), console)
+            datas = load_json()
+            if datas:
+                show_summary_table(datas, console)
+            else: 
+                recap_error(console)
             enter_to_exit()
         case 3:
             exit()

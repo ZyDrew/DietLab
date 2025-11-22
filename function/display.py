@@ -27,6 +27,10 @@ def display_foods(matching_food_name):
 def food_error():
     print("[red]\nAucun aliment correspondant, réessayez.[/red]")
 
+def recap_error(console):
+    console.clear()
+    print("[red]\nAucun aliment encodé, les tableaux ne peuvent pas être générés.[/red]")
+
 def show_summary_table(food_data, console):
     console.clear()
 
@@ -58,7 +62,9 @@ def generate_table(period, period_name, food_data):
     #food_data = Liste de dictionnaires contenant chaque aliment
     #food = Dictionnaire : clé = nom de l'aliment , valeur = sous-dictionnaire avec les caractéristiques
     for food in food_data:
-        name, details = next(iter(food.items()))
+        name = food["name"]
+        details = food["details"]
+
         if details["period"] == period:
             table.add_row(
                 fmt(name),

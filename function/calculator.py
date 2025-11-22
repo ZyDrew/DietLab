@@ -15,10 +15,18 @@ def calculate_macro(selected_food, quantity, period):
     return macro_dict
 
 def sum_macros(food_data, period=None):
-    calories = proteins = carbs = fat = calcium = iron = vitamin_c = 0
+    macros = {
+        "calories": 0,
+        "proteins": 0,
+        "carbs": 0,
+        "fat": 0,
+        "calcium": 0,
+        "iron": 0,
+        "vitamin_c": 0,
+    }
 
     for food in food_data:
-        _, details = next(iter(food.items()))
+        details = food["details"]
         
         #Permet de filtrer sur les éléments de la période donnée , seulement si on a précisé une période en paramètre
         #period = None , on calcule tout
@@ -26,13 +34,8 @@ def sum_macros(food_data, period=None):
         if period and details["period"] != period:
             continue
         
-        calories += details["calories"]
-        proteins += details["proteins"]
-        carbs += details["carbs"]
-        fat += details["fat"]
-        calcium += details["calcium"]
-        iron += details["iron"]
-        vitamin_c += details["vitamin_c"]
+        for key in macros:
+            macros[key] += details[key]
 
     
-    return calories, proteins, carbs, fat, calcium, iron, vitamin_c
+    return tuple(macros.values())

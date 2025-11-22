@@ -19,11 +19,11 @@ def save_to_json(food_name, macro_dict):
         with open(JSON_FILE, mode="r", encoding="utf-8") as read_file:
             food_data = json.load(read_file)
         
-        food_data.append({food_name : macro_dict})
+        food_data.append({"name" : food_name, "details" : macro_dict})
         with open(JSON_FILE, mode="w", encoding="utf-8") as write_file:
             json.dump(food_data, write_file)
     else:
-        food_data = [{food_name : macro_dict}]
+        food_data = [{"name" : food_name, "details" : macro_dict}]
         with open(JSON_FILE, mode="w", encoding="utf-8") as write_file:
             json.dump(food_data, write_file)
 
