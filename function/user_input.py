@@ -1,19 +1,21 @@
 from rich.markdown import Markdown
 from rich import print
 
-def get_menu_choice(console):
+def get_menu_choice(console, sub):
+    #Menu principal je passe 4 à sub, sinon je passe 3 pour les menu secondaires
+
     while True:
-        result_answer = console.input("Votre choix (1 à 3) : ")
+        result_answer = console.input(f"Votre choix (1 à {sub}) : ")
         try:
             result_answer = int(result_answer)
         except ValueError:
-            print("[red]Encoder un chiffre de 1 à 3 inclus\n[/red]")
+            print(f"[red]Encoder un chiffre de 1 à {sub} inclus\n[/red]")
             continue
 
-        if result_answer >= 1 and result_answer <= 3:
+        if result_answer >= 1 and result_answer <= sub:
             return result_answer
         else:
-            print("[red]Encoder un chiffre de 1 à 3 inclus\n[/red]")
+            print(f"[red]Encoder un chiffre de 1 à {sub} inclus\n[/red]")
 
 def get_period(console):
     console.clear()
@@ -73,7 +75,22 @@ def get_quantity(console):
             continue
 
         return food_quantity
-            
+        
+def get_frequency(console):
+    while True:
+        frequency = console.input("\nEncoder la fréquence de consommation en jour (pour une semaine) : ")
+
+        try:
+            frequency = int(frequency)
+        except ValueError:
+            print("[red]Encoder un chiffre de 1 à 7 inclus\n[/red]")
+            continue
+        
+        if frequency >= 1 and frequency <= 7:
+            return frequency
+        else:
+            print("[red]Encoder un chiffre de 1 à 7 inclus\n[/red]")
+
 def get_continue_or_change_period(console):
     while True:
         result_answer = console.input("\nVoulez-vous encoder un nouvel aliment pour cette période (O/N) : ")

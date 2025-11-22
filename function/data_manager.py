@@ -1,5 +1,5 @@
 import csv, json, os
-from constants import FIELDNAMES, DATA_FILE, JSON_FILE
+from constants import FIELDNAMES, DATA_FILE
 
 def read_food_datafile():
     with open(DATA_FILE) as csvfile:
@@ -13,21 +13,21 @@ def read_food_datafile():
     
     return food_datafile
 
-def save_to_json(food_name, macro_dict):
-    if os.path.exists(JSON_FILE):
+def save_to_json(food_name, macro_dict, json_file):
+    if os.path.exists(json_file):
         food_data = []
-        with open(JSON_FILE, mode="r", encoding="utf-8") as read_file:
+        with open(json_file, mode="r", encoding="utf-8") as read_file:
             food_data = json.load(read_file)
         
         food_data.append({"name" : food_name, "details" : macro_dict})
-        with open(JSON_FILE, mode="w", encoding="utf-8") as write_file:
+        with open(json_file, mode="w", encoding="utf-8") as write_file:
             json.dump(food_data, write_file)
     else:
         food_data = [{"name" : food_name, "details" : macro_dict}]
-        with open(JSON_FILE, mode="w", encoding="utf-8") as write_file:
+        with open(json_file, mode="w", encoding="utf-8") as write_file:
             json.dump(food_data, write_file)
 
-def load_json():
-    if os.path.exists(JSON_FILE):
-        with open(JSON_FILE, mode="r", encoding="utf-8") as f:
+def load_json(json_file):
+    if os.path.exists(json_file):
+        with open(json_file, mode="r", encoding="utf-8") as f:
             return json.load(f)
