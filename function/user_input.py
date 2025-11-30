@@ -103,6 +103,85 @@ def get_continue_or_change_period(console):
             return True
         else:
             return False
+        
+#PARTIE BEJ
+def get_height(console):
+    while True:
+        result = console.input("\nEncoder la taille de la personne en mètre (exemple : 1,70) : ")
+        result = result.replace(",", ".")
+
+        try:
+            result = float(result)
+        except ValueError:
+            print("[red]Encoder une valeur numérique en mètre. Exemple : 1,70 \n[/red]")
+            continue
+        
+        if result >= 0.30 and result <= 3.00:
+            return result
+        else:
+            print("[red]Encoder une valeur numérique en mètre comprise entre 0,30 et 3,00 \n[/red]")
+
+def get_weight(console):
+    while True:
+        result = console.input("\nEncoder le poids de la personne en kilo (exemple : 65,3) : ")
+        result = result.replace(",", ".")
+
+        try:
+            result = float(result)
+        except ValueError:
+            print("[red]Encoder une valeur numérique en kilo. Exemple : 65,3 \n[/red]")
+            continue
+
+        if result >= 1.00 and result <= 300.00:
+            return result
+        else:
+            print("[red]Encoder une valeur numérique en kilo supérieure ou égale à 1,00 \n[/red]")
+
+def get_age(console):
+    while True:
+        result = console.input("\nEncoder l'âge de la personne : ")
+
+        try:
+            result = int(result)
+        except ValueError:
+            print("[red]Encoder une valeur numérique supérieure ou égale à 0 \n[/red]")
+            continue
+
+        if result >= 0:
+            return result
+        else:
+            print("[red]Encoder une valeur numérique supérieure ou égale à 0 \n[/red]")
+
+def get_gender(console):
+    while True:
+        result = console.input("\nEncoder le sexe de la personne.\n1. Masculin\n2. Féminin\nVotre choix : ")
+
+        try:
+            result = int(result)
+        except ValueError:
+            print("[red]Encoder une valeur numérique correspondante à 1 ou 2 \n[/red]")
+            continue
+
+        if result == 1 or result == 2:
+            return result
+        else:
+            print("[red]Encoder la valeur 1 ou 2 dans le champ correspondant \n[/red]")
             
+def get_nap(console):
+    while True:
+        result = console.input("\nEncoder le NAP (ou PAL) de la personne (exemple : 1,4) : ")
+        result = result.replace(",", ".")
+
+        try:
+            result = float(result)
+        except ValueError:
+            print("[red]Encoder une valeur numérique supérieur ou égale à 0 \n[/red]")
+            continue
+
+        if result >= 0:
+            return result
+        else:
+            print("[red]Encoder une valeur numérique supérieur ou égale à 0 \n[/red]")
+
 def enter_to_exit():
-    input("\n\nAppuyer sur entrée pour quitter le récapitulatif...")
+    input("\n\nAppuyer sur entrée pour quitter...")

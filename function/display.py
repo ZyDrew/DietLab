@@ -14,7 +14,7 @@ Choisissez une action parmi les suivantes.
 
 1. Anamnèse journalière
 2. Anamnèse hebdomadaire
-3. Calcul besoin énergétique
+3. Calcul besoin énergétique journalier (BEJ)
 4. Quitter
 """
     md = Markdown(menu_md)
@@ -166,6 +166,24 @@ def base_table(title, week):
     table.add_column("Vitamin-C (mg)")
 
     return table
+
+def show_bej_result(console, bej, patient):
+    console.clear()
+
+    gender = "masculin" if patient["gender"] == 1 else "féminin"
+
+    info_md = f"""
+Informations du patient {gender}.\n
+Age : {patient["age"]} an(s)\n
+Taille : {patient["height"]} mètres\n
+Poids : {patient["weight"]} kg\n
+Niveau d'activité : {patient["nap"]}
+"""
+    
+    md = Markdown(info_md)
+    console.print(md)
+
+    print(f"\nSelon la formule de Henry, le Besoin Energétique Journalier (BEJ) du patient est : {fmt(bej)} kcal")
 
 def fmt(x):
     if isinstance(x, float):

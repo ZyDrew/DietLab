@@ -1,9 +1,9 @@
 from constants import PERIODS, JSON_FILE_WEEK, JSON_FILE_DAY
-from function.calculator import calculate_macro
+from function.calculator import calculate_macro, calculate_bej
 from function.data_manager import load_json, save_to_json
-from function.display import food_error, show_summary_table, display_foods, recap_error, show_sub_menu
+from function.display import food_error, show_summary_table, display_foods, recap_error, show_sub_menu, show_bej_result
 from function.search_engine import find_matching_food
-from function.user_input import get_menu_choice, enter_to_exit, get_period, get_food_name, select_from_food_list, get_quantity, get_continue_or_change_period, get_frequency
+from function.user_input import *
 
 def run_menu_loop(user_menu, food_datafile, console):
     match user_menu:
@@ -21,9 +21,20 @@ def run_menu_loop(user_menu, food_datafile, console):
                 show_sub_menu(console, True)
                 loop = run_process(get_menu_choice(console, 3), food_datafile, console, True)
 
-        #Calcul du besoin énergétique d'une personne
+        #Calcul du besoin énergétique journalier d'une personne
         case 3:
-            pass
+            patient = {
+                "gender" : get_gender(console), # 1 = Masculin // 2 = Féminin
+                "age" : get_age(console),
+                "height" : get_height(console),
+                "weight" : get_weight(console),
+                "nap" : get_nap(console)
+            }
+
+            bej = calculate_bej(**patient)
+
+            show_bej_result(console, float(bej), patient)
+            enter_to_exit()
 
         case 4:
             exit()

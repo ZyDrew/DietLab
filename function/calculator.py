@@ -41,3 +41,38 @@ def sum_macros(food_data, period=None):
 
     
     return tuple(macros.values())
+
+
+def calculate_bej(gender, age, height, weight, nap):
+    match(gender):
+        case 1:
+            if age >= 0 and age < 3:
+                return ((28.2 * weight) + (859 * height) - 371) * nap
+            elif age >= 3 and age < 10:
+                return ((15.1 * weight) + (74.2 * height) + 306) * nap
+            elif age >= 10 and age < 18:
+                return ((15.6 * weight) + (266 * height) + 299) * nap
+            elif age >= 18 and age < 30:
+                return ((14.4 * weight) + (313 * height) + 113) * nap
+            elif age >= 30 and age < 60:
+                return ((11.4 * weight) + (541 * height) - 137) * nap
+            elif age >= 60:
+                return ((11.4 * weight) + (541 * height) - 256) * nap  
+
+        case 2:
+            if age >= 0 and age < 3:
+                return ((30.4 * weight) + (703 * height) - 287) * nap
+            elif age >= 3 and age < 10:
+                return ((15.9 * weight) + (210 * height) + 349) * nap
+            elif age >= 10 and age < 18:
+                return ((9.4 * weight) + (249 * height) + 462) * nap
+            elif age >= 18 and age < 30:
+                return ((10.4 * weight) + (615 * height) - 282) * nap
+            elif age >= 30 and age < 60:
+                return ((8.18 * weight) + (502 * height) - 11.6) * nap
+            elif age >= 60:
+                return ((8.52 * weight) + (421 * height) + 10.7) * nap 
+
+        case _:
+            pass
+    
