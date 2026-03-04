@@ -17,7 +17,7 @@ My goal is to provide a robust CLI application (with a Web App in the roadmap) s
 - Accessibility: Start with a powerful CLI tool, evolving into a web site.
  
 
-## Quick start
+## Quick Start
 
 ## Usage
 
