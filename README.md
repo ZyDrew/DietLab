@@ -4,6 +4,7 @@ It tries to fill the lack of usability of Nubel web site and brings more tools t
 This tool calculates a person's meal plan and **TDEE** (Total Daily Energy Expenditure), supported by a comprehensive food database that is updated periodically.
 
 ## Demo :
+[![asciicast](https://asciinema.org/a/zjQS4JzjLIYe6QOz.png)](https://asciinema.org/a/zjQS4JzjLIYe6QOz)
 
 ## Why this project ? Motivation
 This project was born out of a real-world need. My girlfriend, a certified dietitian, often found existing tools, specifically the Nubel database, to be lacking in efficiency and user experience.
