@@ -1,15 +1,15 @@
 # DietLab
-This project is a command line version of the belgian Nubel website, focusing only on the working tools for dietetician. 
-It tries to fill the lack of usability of Nubel web site and brings more tools to make dieteticians life easier.
-This tool calculates a person's meal plan and **TDEE** (Total Daily Energy Expenditure), supported by a comprehensive food database that is updated periodically.
+This project is a command line version of known dietitian website, focusing only on the working tools for dietician. 
+It tries to fill the lack of usability of ** web site and brings more tools to make dieticians life easier.
+This tool calculates a person's meal plan and **TDEE** (Total Daily Energy Expenditure), supported by a comprehensive food database.
 
 ## Demo :
 [![asciicast](https://asciinema.org/a/zjQS4JzjLIYe6QOz.png)](https://asciinema.org/a/zjQS4JzjLIYe6QOz)
 
 ## Why this project ? Motivation
-This project was born out of a real-world need. My girlfriend, a certified dietitian, often found existing tools, specifically the Nubel database, to be lacking in efficiency and user experience.
+This project was born out of a real-world need. My girlfriend, a certified dietician, often found existing tools, to be lacking in efficiency and user experience.
 Faced with interface frustrations and missing features that slowed down her professional workflow. 
-My goal is to provide a robust CLI application (with a Web App in the roadmap) specifically for the daily needs of dietitians.
+My goal is to provide a robust CLI application (with a Web App in the roadmap) specifically for the daily needs of dieticians.
 
 ### Project Goals :
 - Efficiency First: Streamline the calculation process to save time during daily work.
