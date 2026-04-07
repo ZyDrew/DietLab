@@ -6,7 +6,7 @@ from rich.console import Console
 
 def main():
     #Définition de la console d'affichage global au programme
-    console = Console()
+    console = Console(force_terminal=True, legacy_windows=False)
 
     #Initialisation des données
     #Lecture du fichier des données csv

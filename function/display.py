@@ -3,9 +3,10 @@ from rich.markdown import Markdown
 from rich import print
 from function.calculator import sum_macros
 from constants import PERIODS
+import os
 
 def show_main_menu(console):
-    console.clear()
+    clear(console)
 
     menu_md = """
 # DietLab
@@ -21,7 +22,7 @@ Choisissez une action parmi les suivantes.
     console.print(md)
 
 def show_sub_menu(console, week):
-    console.clear()
+    clear(console)
 
     if week:
         text = "hebdomadaire"
@@ -49,11 +50,11 @@ def food_error():
     print("[red]\nAucun aliment correspondant, réessayez.[/red]")
 
 def recap_error(console):
-    console.clear()
+    clear(console)
     print("[red]\nAucun aliment encodé, les tableaux ne peuvent pas être générés.[/red]")
 
 def show_summary_table(food_data, console, week):
-    console.clear()
+    clear(console)
 
     #Liste des tableaux
     table_list = []
@@ -168,7 +169,7 @@ def base_table(title, week):
     return table
 
 def show_bej_result(console, bej, patient):
-    console.clear()
+    clear(console)
 
     gender = "masculin" if patient["gender"] == 1 else "féminin"
 
@@ -189,3 +190,9 @@ def fmt(x):
     if isinstance(x, float):
         return f"{x:.2f}"   
     return str(x)
+
+def clear(console):
+    if console.is_terminal:
+        console.clear()
+    else:
+        os.system("cls")
