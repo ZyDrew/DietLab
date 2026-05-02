@@ -1,5 +1,5 @@
 # DietLab
-This project is a command line version of known dietitian website, focusing only on the working tools for dietician. 
+This project is a command line version of known dietician's website, focusing only on the working tools for dieticians. 
 It tries to fill the lack of usability of ** web site and brings more tools to make dieticians life easier.
 This tool calculates a person's meal plan and **TDEE** (Total Daily Energy Expenditure), supported by a comprehensive food database.
 
